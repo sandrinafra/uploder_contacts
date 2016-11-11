@@ -1,25 +1,87 @@
-<%= render 'form', import: @import %>
-
-<h3>Liste des imports</h3>
-<% @imports.each do |import| %>
-  <%= import.id %>
-  <%= link_to 'Afficher', import %>
-  <%= link_to 'Supprimer', import, method: :delete, data: { confirm: 'Etes-vous sûr ?' } %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3 text-center">
+      <%= render 'form', import: @import %>
+    </div>
+  </div>
   <br>
-<% end %>
 
-<h3>Contacts importés</h3>
-<% @imports.each do |import| %>
-    <% import.contacts.each do |ct| %>
-    <%= "#{ct.firstname} #{ct.lastname} #{ct.email}" %>
-    <br>
-    <% end %>
-<% end %>
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3 well">
+      <h3>Liste des imports</h3>
+      <div class="list-group">
+        <% @imports.each do |import| %>
+          <div class="list-group-item">
+            <div class="row">
+              <div class="col-xs-6">
+                <span class="label label-warning"><%= "#{import.created_at.to_date}" %></span>
+                <%= "Import #{import.id}" %>
+              </div>
+              <div class="col-xs-3">
+                <%= link_to 'Afficher', import %>
+              </div>
+              <div class="col-xs-3">
+                <%= link_to 'Supprimer', import, method: :delete, data: { confirm: 'Etes-vous sûr ?' } %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
-<h3>Contacts non importés</h3>
-<% @imports.each do |import| %>
-  <% import.null_contacts.each do |ct| %>
-    <%= "#{ct.firstname} #{ct.lastname} #{ct.email} #{ct.status}" %>
-    <br>
-  <% end %>
-<% end %>
+  <div class="row">
+    <div class="well">
+      <h3>Contacts importés</h3>
+      <div class="list-group">
+        <% @imports.each do |import| %>
+          <% import.contacts.each do |ct| %>
+            <div class="list-group-item">
+              <div class="row">
+                <div class="col-sm-4">
+                  <%= ct.firstname %>
+                </div>
+                <div class="col-sm-4">
+                  <%= ct.lastname %>
+                </div>
+                <div class="col-sm-4">
+                  <%= ct.email %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="well">
+      <h3>Contacts non importés</h3>
+      <div class="list-group">
+        <% @imports.each do |import| %>
+          <% import.null_contacts.each do |ct| %>
+            <div class="list-group-item">
+              <div class="row">
+                <div class="col-sm-3">
+                  <%= ct.firstname %>
+                </div>
+                <div class="col-sm-3">
+                  <%= ct.lastname %>
+                </div>
+                <div class="col-sm-3">
+                  <%= ct.email %>
+                </div>
+                <div class="col-sm-3">
+                  <% ct.status.split('|').each do |s| %>
+                    <span class="label label-danger"><%= s %></span>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
