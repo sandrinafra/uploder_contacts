@@ -1,6 +1,7 @@
 class Import < ApplicationRecord
-  mount_uploader :file, FileUploader
+  has_many :contacts
 
-  validates_processing_of :file 
+  mount_uploader :file, FileUploader
+  validates_processing_of :file
 
 end

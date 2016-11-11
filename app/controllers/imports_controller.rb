@@ -1,4 +1,5 @@
 class ImportsController < ApplicationController
+  include ImportsHelper
   before_action :set_import, only: [:show, :edit, :update, :destroy]
 
   # GET /imports
@@ -28,6 +29,7 @@ class ImportsController < ApplicationController
 
     respond_to do |format|
       if @import.save
+        xlsx_process
         format.html { redirect_to @import, notice: 'Import was successfully created.' }
         format.json { render :show, status: :created, location: @import }
       else
