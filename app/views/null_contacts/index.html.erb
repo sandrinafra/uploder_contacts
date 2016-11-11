@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Null Contacts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Email</th>
+      <th>Status</th>
+      <th>Import</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @null_contacts.each do |null_contact| %>
+      <tr>
+        <td><%= null_contact.firstname %></td>
+        <td><%= null_contact.lastname %></td>
+        <td><%= null_contact.email %></td>
+        <td><%= null_contact.status %></td>
+        <td><%= null_contact.import %></td>
+        <td><%= link_to 'Show', null_contact %></td>
+        <td><%= link_to 'Edit', edit_null_contact_path(null_contact) %></td>
+        <td><%= link_to 'Destroy', null_contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Null Contact', new_null_contact_path %>

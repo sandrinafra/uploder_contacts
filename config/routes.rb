@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :null_contacts
    root "imports#index"
   resources :contacts
   resources :imports

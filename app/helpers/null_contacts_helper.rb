@@ -1,0 +1,2 @@
+module NullContactsHelper
+end

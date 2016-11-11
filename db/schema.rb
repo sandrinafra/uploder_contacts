@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161110200046) do
+ActiveRecord::Schema.define(version: 20161111131048) do
 
   create_table "contacts", force: :cascade do |t|
     t.string   "firstname"
@@ -26,6 +26,17 @@ ActiveRecord::Schema.define(version: 20161110200046) do
     t.string   "file"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "null_contacts", force: :cascade do |t|
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "email"
+    t.string   "status"
+    t.integer  "import_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["import_id"], name: "index_null_contacts_on_import_id"
   end
 
 end
