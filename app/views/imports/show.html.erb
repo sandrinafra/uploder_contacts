@@ -2,7 +2,9 @@
 
 <p>
   <strong>File:</strong>
-  <%= @import.file %>
+  <% @import.contacts.each do |ct| %>
+      <p><%= "#{ct.firstname} #{ct.lastname} #{ct.email}" %></p>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_import_path(@import) %> |
