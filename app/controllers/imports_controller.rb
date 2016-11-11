@@ -6,6 +6,7 @@ class ImportsController < ApplicationController
   # GET /imports.json
   def index
     @imports = Import.all
+    @import = Import.new
   end
 
   # GET /imports/1
@@ -25,15 +26,14 @@ class ImportsController < ApplicationController
   # POST /imports
   # POST /imports.json
   def create
-    @import = Import.new(import_params)
-
+    @import = Import.new(params[:import])
     respond_to do |format|
       if @import.save
         xlsx_process
         format.html { redirect_to @import, notice: 'Import was successfully created.' }
         format.json { render :show, status: :created, location: @import }
       else
-        format.html { render :new }
+        format.html { redirect_to imports_path }
         format.json { render json: @import.errors, status: :unprocessable_entity }
       end
     end
