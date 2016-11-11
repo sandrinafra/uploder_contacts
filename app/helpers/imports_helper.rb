@@ -17,8 +17,9 @@ module ImportsHelper
       else
         ct_null = NullContact.new(firstname: row[0].value, lastname: row[1].value, email: row[2].value, status: "", import: @import)
         ct.errors.each do |attr, msg|
-          ct_null.status += ", #{attr} #{msg}"
+          ct_null.status += "#{attr} #{msg}|"
         end
+        ct_null.status = ct_null.status[0...-1]
         ct_null.save
       end
     end
