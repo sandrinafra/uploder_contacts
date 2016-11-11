@@ -1,11 +1,17 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <strong>File:</strong>
+  <h3>Contacts importés</h3>
   <% @import.contacts.each do |ct| %>
-      <p><%= "#{ct.firstname} #{ct.lastname} #{ct.email}" %></p>
+      <%= "#{ct.firstname} #{ct.lastname} #{ct.email}" %>
+      <br>
   <% end %>
 </p>
 
-<%= link_to 'Edit', edit_import_path(@import) %> |
-<%= link_to 'Back', imports_path %>
+<p>
+  <h3>Contacts non importés</h3>
+  <% @import.null_contacts.each do |ct| %>
+      <%= "#{ct.firstname} #{ct.lastname} #{ct.email} #{ct.status}" %>
+      <br>
+  <% end %>
+</p>
+
+<%= link_to 'Liste de contacts', imports_path %>
