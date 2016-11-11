@@ -1,6 +1,6 @@
 class ImportsController < ApplicationController
   include ImportsHelper
-  before_action :set_import, only: [:show, :edit, :update, :destroy]
+  before_action :set_import, only: [:show, :destroy]
 
   # GET /imports
   # GET /imports.json
@@ -9,24 +9,16 @@ class ImportsController < ApplicationController
     @import = Import.new
   end
 
-  # GET /imports/1
-  # GET /imports/1.json
-  def show
-  end
-
   # GET /imports/new
   def new
     @import = Import.new
   end
 
-  # GET /imports/1/edit
-  def edit
-  end
-
   # POST /imports
   # POST /imports.json
   def create
-    @import = Import.new(params[:import])
+    file = params[:import][:file] if params[:import]
+    @import = Import.new(file: file)
     respond_to do |format|
       if @import.save
         xlsx_process
@@ -34,20 +26,6 @@ class ImportsController < ApplicationController
         format.json { render :show, status: :created, location: @import }
       else
         format.html { redirect_to imports_path }
-        format.json { render json: @import.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /imports/1
-  # PATCH/PUT /imports/1.json
-  def update
-    respond_to do |format|
-      if @import.update(import_params)
-        format.html { redirect_to @import, notice: 'Import was successfully updated.' }
-        format.json { render :show, status: :ok, location: @import }
-      else
-        format.html { render :edit }
         format.json { render json: @import.errors, status: :unprocessable_entity }
       end
     end

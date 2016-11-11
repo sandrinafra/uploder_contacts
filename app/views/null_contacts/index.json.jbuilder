@@ -1,1 +1,0 @@
-json.array! @null_contacts, partial: 'null_contacts/null_contact', as: :null_contact
