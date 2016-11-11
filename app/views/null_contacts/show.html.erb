@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Firstname:</strong>
+  <%= @null_contact.firstname %>
+</p>
+
+<p>
+  <strong>Lastname:</strong>
+  <%= @null_contact.lastname %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @null_contact.email %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @null_contact.status %>
+</p>
+
+<p>
+  <strong>Import:</strong>
+  <%= @null_contact.import %>
+</p>
+
+<%= link_to 'Edit', edit_null_contact_path(@null_contact) %> |
+<%= link_to 'Back', null_contacts_path %>
