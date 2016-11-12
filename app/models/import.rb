@@ -4,7 +4,7 @@ class Import < ApplicationRecord
 
 
   mount_uploader :file, FileUploader
-  validates :file, presence: true
   validates_processing_of :file
+  validates :file, presence: true
 
 end

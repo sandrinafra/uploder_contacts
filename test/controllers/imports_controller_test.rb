@@ -10,32 +10,16 @@ class ImportsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get new" do
-    get new_import_url
-    assert_response :success
-  end
-
   test "should create import" do
     assert_difference('Import.count') do
-      post imports_url, params: { import: { file: @import.file } }
+      post imports_url, params: { import: { file: File.open(Rails.root.join('test/docs/test1.xlsx')) } }
     end
-
     assert_redirected_to import_url(Import.last)
   end
 
   test "should show import" do
     get import_url(@import)
     assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_import_url(@import)
-    assert_response :success
-  end
-
-  test "should update import" do
-    patch import_url(@import), params: { import: { file: @import.file } }
-    assert_redirected_to import_url(@import)
   end
 
   test "should destroy import" do
@@ -45,4 +29,5 @@ class ImportsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to imports_url
   end
+
 end

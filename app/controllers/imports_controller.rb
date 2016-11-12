@@ -25,6 +25,8 @@ class ImportsController < ApplicationController
         format.html { redirect_to @import, notice: 'Import was successfully created.' }
         format.json { render :show, status: :created, location: @import }
       else
+        @import.errors.each do |attr, msg|
+        end
         format.html { redirect_to imports_path }
         format.json { render json: @import.errors, status: :unprocessable_entity }
       end

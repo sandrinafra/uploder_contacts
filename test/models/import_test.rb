@@ -1,7 +1,9 @@
 require 'test_helper'
 
 class ImportTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
+  test "should not save import without file" do
+    import = Import.new
+    assert_not import.save
+  end
 end
